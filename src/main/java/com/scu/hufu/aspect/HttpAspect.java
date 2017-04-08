@@ -73,6 +73,9 @@ public class HttpAspect {
             throw new ServerExpection(ResponseEnum.OVER_TIME_REQUEST);
         }
 
+        //检验nonce是否缺失随机性，抛出"禁止重放"异常
+        //待完成
+
         StringBuffer buffer=new StringBuffer();
         //url
         buffer.append(request.getRequestURI());
