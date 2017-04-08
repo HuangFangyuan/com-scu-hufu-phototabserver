@@ -13,6 +13,8 @@ public enum ResponseEnum{
     BAD_REQUEST(402, "请求头错误"),
     PASSWORD_ERROR(403,"密码错误"),
     TOKEN_INVALID(405,"Token不合法"),
+    OVER_TIME_REQUEST(406,"过时的请求"),
+    SAME_NONCE(407,"禁止重放"),
 
     FILE_NOT_FOUND(404,"请求的文件不存在"),
     ;
