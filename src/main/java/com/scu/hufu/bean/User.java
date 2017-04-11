@@ -1,8 +1,7 @@
 package com.scu.hufu.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Null;
 
 /**
  * Created by tianfei on 2017/4/6.
@@ -15,9 +14,14 @@ public class User {
     private Integer id;
 
     private String name;
+
+    @Column(unique = true,nullable = false)
     private String email;
+
     private String signature;
     private String headerUrl;
+
+    @Column(nullable = false)
     private String passwordMD5;
 
 

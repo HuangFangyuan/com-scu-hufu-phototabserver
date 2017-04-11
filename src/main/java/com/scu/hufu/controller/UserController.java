@@ -1,5 +1,6 @@
 package com.scu.hufu.controller;
 
+import com.google.common.base.Strings;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.scu.hufu.bean.Response;
@@ -28,7 +29,7 @@ public class UserController {
     private UserRepository userRepository;
 
 
-    @PostMapping(value = "/login")
+    @PostMapping(value = "/user/login")
     public Object loginWithPassword(@RequestParam String email,@RequestParam String MD5pass){
 
         String _email=checkNotNull(email);
@@ -48,7 +49,37 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/token")
+    @PostMapping(value = "/user/create")
+    public Object register(@RequestParam String email,@RequestParam String MD5pass,@RequestParam String name){
+
+        String _email=checkNotNull(email,ResponseEnum.REGISTER_ERR);
+        String _MD5pass=checkNotNull(MD5pass,ResponseEnum.REGISTER_ERR);
+        String _name=checkNotNull(name,ResponseEnum.REGISTER_ERR);
+
+        User user=new User();
+        user.setEmail(_email);
+        user.setName(_name);
+        user.setPasswordMD5(_MD5pass);
+
+        User select=userRepository.findByEmail(_email);
+
+        if (select!=null){
+            throw new ServerExpection(ResponseEnum.USER_EXISTED);
+        }
+
+        User save=userRepository.save(user);
+
+        //返回的数据包括注册成功的User
+        return ResponseUtil.success(save);
+    }
+
+    @PostMapping(value = "/user/update")
+    public Object updateUser(){
+
+        return null;
+    }
+
+    @PostMapping(value = "/tokenLogin")
     public Object tokenLogin(@RequestBody String json){
 
 
@@ -65,21 +96,11 @@ public class UserController {
         return null;
     }
 
+    @PostMapping(value = "/refreshToken")
+    public Object refreshToken(){
 
-    @PostMapping(value = "/test")
-    public Object testAll(){
 
-        Response<List> response=new Response<>();
-
-        List<User> mList=userRepository.findAll();
-        //checkNotNull(mList);
-
-        response.setCode(200);
-        response.setMessage("success");
-        response.setData(mList);
-
-        return response;
+        return null;
     }
-
 
 }

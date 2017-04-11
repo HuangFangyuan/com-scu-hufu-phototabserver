@@ -8,6 +8,10 @@ public enum ResponseEnum{
     UNKONW_ERROR(-1, "未知错误,由抛出者自定义的错误或者系统错误：如空指针"),
     SUCCESS(200, "成功"),
 
+    //注册
+    REGISTER_ERR(301,"注册数据不完整"),
+    USER_EXISTED(302,"用户已存在"),
+
     //登录相关
     USER_NOT_FOUND(401, "用户不存在"),
     PASSWORD_ERROR(402,"密码错误"),
@@ -21,7 +25,7 @@ public enum ResponseEnum{
     WRONG_CHECKSUM(505,"CheckSum错误"),
 
 
-    FILE_NOT_FOUND(404,"请求的文件不存在"),
+    //FILE_NOT_FOUND(404,"请求的文件不存在"),
     ;
 
     private Integer code;
