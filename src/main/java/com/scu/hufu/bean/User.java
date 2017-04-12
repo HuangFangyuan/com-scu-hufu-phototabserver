@@ -1,8 +1,7 @@
 package com.scu.hufu.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Null;
 
 /**
  * Created by tianfei on 2017/4/6.
@@ -15,12 +14,36 @@ public class User {
     private Integer id;
 
     private String name;
+
+    @Column(unique = true,nullable = false)
+    private String email;
+
     private String signature;
-    private String photoNumber;
+    private String headerUrl;
+
+    @Column(nullable = false)
     private String passwordMD5;
 
 
+
+
     public User(){}
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getHeaderUrl() {
+        return headerUrl;
+    }
+
+    public void setHeaderUrl(String headerUrl) {
+        this.headerUrl = headerUrl;
+    }
 
     public Integer getId() {
         return id;
@@ -44,14 +67,6 @@ public class User {
 
     public void setSignature(String signature) {
         this.signature = signature;
-    }
-
-    public String getPhotoNumber() {
-        return photoNumber;
-    }
-
-    public void setPhotoNumber(String photoNumber) {
-        this.photoNumber = photoNumber;
     }
 
     public String getPasswordMD5() {
