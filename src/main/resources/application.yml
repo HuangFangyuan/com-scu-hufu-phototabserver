@@ -14,7 +14,7 @@ spring:
      enabled: always
 server:
   port: 8080
-  context-path: /
+serverSecret: Hjs#n)nq%sd*(mm@ef&dds
 
 
 

@@ -38,22 +38,6 @@ public class HttpAspect {
     @Pointcut("execution(public * com.scu.hufu.controller.*.*(..))")
     public void checkHeaderPoint(){}
 
-    //指定所有登录为验证token的切入点
-    @Pointcut("execution(public * com.scu.hufu.controller.UserController.token*(..))")
-    public void dologin(){}
-
-
-
-    //所有的用户自动登录前先进行token鉴权
-    @Before("dologin()")
-    public void checkToken(JoinPoint joinPoint){
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
-        //记录登录请求
-        log(joinPoint,attributes);
-
-        //检验token
-    }
 
     //对所有的HTTP请求进行Header验证
     @Before("checkHeaderPoint()")

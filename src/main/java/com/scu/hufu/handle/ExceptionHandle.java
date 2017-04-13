@@ -1,10 +1,12 @@
 package com.scu.hufu.handle;
 
 import com.scu.hufu.bean.Response;
+import com.scu.hufu.enums.ResponseEnum;
 import com.scu.hufu.exception.ServerExpection;
 import com.scu.hufu.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +25,9 @@ public class ExceptionHandle {
         if (e instanceof ServerExpection) {
             ServerExpection sE = (ServerExpection) e;
             return ResponseUtil.error(sE.getCode(), sE.getMessage());
-        }else {
+        }else if (e instanceof MissingServletRequestParameterException){
+            return ResponseUtil.error(ResponseEnum.MISS_REQUIRED_PARAM);
+        } else{
             logger.error("【系统异常】{}", e);
             return ResponseUtil.error(-1, "未知错误");
         }

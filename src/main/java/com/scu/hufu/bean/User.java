@@ -1,7 +1,6 @@
 package com.scu.hufu.bean;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 
 /**
  * Created by tianfei on 2017/4/6.
@@ -24,10 +23,18 @@ public class User {
     @Column(nullable = false)
     private String passwordMD5;
 
-
-
+    @Column(nullable = false)
+    private boolean isTokenValid =false;
 
     public User(){}
+
+    public boolean isTokenValid() {
+        return isTokenValid;
+    }
+
+    public void setTokenValid(boolean tokenValid) {
+        isTokenValid = tokenValid;
+    }
 
     public String getEmail() {
         return email;

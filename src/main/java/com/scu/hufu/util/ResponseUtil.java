@@ -27,6 +27,7 @@ public class ResponseUtil {
         return result;
     }
 
+
     public static Response error(ResponseEnum e){
         Response result = new Response();
         result.setCode(e.getCode());

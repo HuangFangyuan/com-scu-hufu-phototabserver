@@ -5,7 +5,11 @@ package com.scu.hufu.enums;
  */
 
 public enum ResponseEnum{
-    UNKONW_ERROR(-1, "未知错误,由抛出者自定义的错误或者系统错误：如空指针"),
+
+    //由抛出者自定义的错误或者系统错误：如空指针,包括创建Token失败时抛出的UnsupportedEncodingException
+    UNKONW_ERROR(-1, "未知错误"),
+
+
     SUCCESS(200, "成功"),
 
     //注册
@@ -16,6 +20,8 @@ public enum ResponseEnum{
     USER_NOT_FOUND(401, "用户不存在"),
     PASSWORD_ERROR(402,"密码错误"),
     TOKEN_INVALID(403,"Token不合法"),
+    MISS_TOKEN(404,"Token缺失"),
+    OVER_TIME_TOKEN(405,"Token过时"),
 
     //API安全相关
     BAD_REQUEST(501, "请求头错误"),
@@ -23,6 +29,10 @@ public enum ResponseEnum{
     SAME_NONCE(503,"禁止重放"),
     UNKNOWN_CONTENT_TYPE(504,"格式错误"),
     WRONG_CHECKSUM(505,"CheckSum错误"),
+    ONLY_HTTP_ALLOWED(506,"请使用HTTP"),
+    BAD_URL_FORMAT(507,"不合法的URL"),
+    MISS_REQUIRED_PARAM(508,"参数缺失"),
+    ONLY_POST_SUPPORTED(509,"只支持POST请求"),
 
 
     //FILE_NOT_FOUND(404,"请求的文件不存在"),
